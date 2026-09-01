@@ -20,6 +20,7 @@ const en = {
     on: "On",
     off: "Off",
     close: "Close",
+    loading: "Loading…",
   },
 
   nav: {
@@ -98,6 +99,7 @@ const en = {
     placeholder: "Write your thoughts\u2026",
     translationNote:
       "Shown in the {translation}. Tap \u201cRead full chapter\u201d to read this passage in another translation.",
+    loadError: "The full chapter couldn't be loaded. You can still read it here:",
   },
 
   worship: {
@@ -106,6 +108,10 @@ const en = {
     adjustTime: "Adjust time",
     unavailable:
       "Audio isn't available right now. You can still take this time to worship in your own way.",
+    ambient: "Ambient",
+    popular: "Worship songs",
+    watchOnYoutube: "Watch on YouTube",
+    videoUnavailable: "This video isn't available to play here.",
   },
 
   reflection: {

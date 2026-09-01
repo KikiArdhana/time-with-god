@@ -22,6 +22,7 @@ const id: Dict = {
     on: "Nyala",
     off: "Mati",
     close: "Tutup",
+    loading: "Memuat…",
   },
 
   nav: {
@@ -100,6 +101,7 @@ const id: Dict = {
     placeholder: "Tuliskan pikiranmu\u2026",
     translationNote:
       "Ditampilkan dalam {translation}. Ketuk \u201cBaca satu pasal penuh\u201d untuk membaca bagian ini dalam terjemahan lain.",
+    loadError: "Pasal lengkap gagal dimuat. Kamu tetap bisa membacanya di sini:",
   },
 
   worship: {
@@ -108,6 +110,10 @@ const id: Dict = {
     adjustTime: "Atur waktu",
     unavailable:
       "Audio belum tersedia saat ini. Kamu tetap bisa memakai waktu ini untuk menyembah dengan caramu sendiri.",
+    ambient: "Ambient",
+    popular: "Lagu penyembahan",
+    watchOnYoutube: "Tonton di YouTube",
+    videoUnavailable: "Video ini tidak dapat diputar di sini.",
   },
 
   reflection: {
