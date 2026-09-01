@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { Screen, Card } from "@/components/ui/Card";
 import { BottomNav } from "@/components/ui/BottomNav";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { WeeklyGraph } from "@/components/ui/WeeklyGraph";
 import { useSettings } from "@/lib/store/settings-context";
 import { useSession } from "@/lib/store/session-context";
 import { formatDay, formatTime, intentionsLabel } from "@/lib/format";
@@ -18,6 +19,12 @@ export default function HistoryPage() {
     <>
       <Screen withNav>
         <PageHeader title={t.moments.title} subtitle={t.moments.subtitle} />
+
+        {completed.length > 0 && (
+          <div className="mb-6">
+            <WeeklyGraph sessions={completed} lang={lang} label={t.moments.weekly} />
+          </div>
+        )}
 
         {completed.length === 0 ? (
           <Card className="p-6 text-center">
