@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+  --font-playfair: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-ivory text-ink antialiased;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Warm paper texture: a whisper of gradient, nothing loud. */
+  background-image: radial-gradient(
+    120% 80% at 50% -10%,
+    #fef8ea 0%,
+    #faf6ec 55%,
+    #f6f1e4 100%
+  );
+  background-attachment: fixed;
+}
+
+/* Mobile-first app frame, centered on larger screens. */
+.app-frame {
+  @apply mx-auto w-full max-w-app;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Comfortable, quiet form fields. */
+textarea,
+input {
+  @apply bg-transparent outline-none;
+}
+
+textarea::placeholder,
+input::placeholder {
+  @apply text-faint;
+}
+
+/* Visible keyboard focus without harsh outlines. */
+:focus-visible {
+  outline: 2px solid theme("colors.gold.400");
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Range input styling for the time + customize controls. */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: theme("colors.line");
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: theme("colors.gold.400");
+  border: 3px solid #fffdf7;
+  box-shadow: 0 1px 6px rgba(60, 50, 20, 0.25);
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 9999px;
+  background: theme("colors.gold.400");
+  border: 3px solid #fffdf7;
+  cursor: pointer;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
