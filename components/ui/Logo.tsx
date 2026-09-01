@@ -1,3 +1,17 @@
+export function CrossMark({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true" fill="none">
+      <path
+        d="M24 6v36M12 18h24"
+        stroke="#EAC24A"
+        strokeWidth="4.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function SunMark({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden="true" fill="none">

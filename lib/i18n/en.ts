@@ -34,6 +34,13 @@ const en = {
     haveAccount: "I already have an account",
   },
 
+  onboard: {
+    verseLabel: "A verse for today",
+    nameQuestion: "What should we call you?",
+    namePlaceholder: "Your name (optional)",
+    begin: "Begin",
+  },
+
   time: {
     question: "How much time would you like to spend with God today?",
     help: "We'll help you make the most of the time you have.",
@@ -160,6 +167,7 @@ const en = {
     title: "Moments with God",
     subtitle: "A gentle record of your time \u2014 not a streak to keep.",
     empty: "Your moments with God will appear here.",
+    weekly: "This week",
   },
 
   journal: {

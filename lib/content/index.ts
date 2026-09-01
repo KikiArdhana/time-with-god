@@ -48,6 +48,11 @@ function promptsForTheme(pool: Prompt[], theme: ThemeId): Prompt[] {
   return matched.length > 0 ? matched : pool;
 }
 
+/** A verse for today, independent of intention — stable per day, varies daily. */
+export function selectDailyVerse(seedDate = new Date()): Scripture {
+  return pickFrom(scriptures, `${dayKey(seedDate)}:daily-verse`);
+}
+
 /** Choose the Scripture for a session: stable per day + primary intention. */
 export function selectScripture(theme: ThemeId, seedDate = new Date()): Scripture {
   const t = themeById(theme);

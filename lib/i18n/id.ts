@@ -36,6 +36,13 @@ const id: Dict = {
     haveAccount: "Saya sudah punya akun",
   },
 
+  onboard: {
+    verseLabel: "Firman untuk hari ini",
+    nameQuestion: "Siapa nama panggilanmu?",
+    namePlaceholder: "Namamu (opsional)",
+    begin: "Mulai",
+  },
+
   time: {
     question: "Berapa lama kamu ingin bersama Tuhan hari ini?",
     help: "Kami bantu kamu memanfaatkan waktu yang kamu punya.",
@@ -162,6 +169,7 @@ const id: Dict = {
     title: "Momen bersama Tuhan",
     subtitle: "Catatan lembut atas waktumu \u2014 bukan rekor untuk dijaga.",
     empty: "Momen kebersamaanmu dengan Tuhan akan muncul di sini.",
+    weekly: "Minggu ini",
   },
 
   journal: {

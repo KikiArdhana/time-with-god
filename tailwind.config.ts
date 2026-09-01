@@ -58,11 +58,16 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)", opacity: "0.9" },
           "50%": { transform: "scale(1.06)", opacity: "1" },
         },
+        "grow-up": {
+          "0%": { transform: "scaleY(0)" },
+          "100%": { transform: "scaleY(1)" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-out both",
         "fade-in-slow": "fade-in-slow 1s ease-out both",
         breathe: "breathe 8s ease-in-out infinite",
+        "grow-up": "grow-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
     },
   },

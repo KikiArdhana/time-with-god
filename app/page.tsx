@@ -16,15 +16,15 @@ import { formatDay, intentionsLabel } from "@/lib/format";
 
 function OnboardingGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { isComplete } = useOnboarding();
+  const { isComplete, hydrated } = useOnboarding();
 
   useEffect(() => {
-    if (!isComplete) {
+    if (hydrated && !isComplete) {
       router.replace("/onboard");
     }
-  }, [isComplete, router]);
+  }, [hydrated, isComplete, router]);
 
-  if (!isComplete) {
+  if (!hydrated || !isComplete) {
     return null;
   }
 
