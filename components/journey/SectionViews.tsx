@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { ExternalLink, Minus, Plus, Sparkles } from "lucide-react";
 import { SectionShell } from "./SectionShell";
 import { PromptList, SoftTextarea } from "./Prompts";
 import { MusicPlayer } from "./MusicPlayer";
+import { SongPicker } from "./SongPicker";
+import { ScriptureReaderSheet } from "./ScriptureReaderSheet";
 import { CircularTimer } from "@/components/ui/CircularTimer";
 import { useSettings } from "@/lib/store/settings-context";
 import { useSession } from "@/lib/store/session-context";
@@ -61,12 +64,15 @@ export function ScriptureView(props: StepProps) {
   const { t, lang } = useSettings();
   const { active, setEntry, getEntry } = useSession();
   const scripture = active ? scriptureById(active.scriptureId) : undefined;
+  const [reading, setReading] = useState(false);
   if (!scripture) return null;
 
   const verses = scripture.verses[lang] ?? scripture.verses.en;
   const showNote = lang === "id" && !scripture.verses.id;
 
   return (
+    <>
+    {reading && <ScriptureReaderSheet scripture={scripture} onClose={() => setReading(false)} />}
     <SectionShell
       title={t.sections.scripture}
       minutes={props.step.minutes}
@@ -97,15 +103,25 @@ export function ScriptureView(props: StepProps) {
 
       <div className="mt-4 flex items-center justify-between">
         <span className="text-sm text-faint">{t.scripture.take}</span>
-        <a
-          href={fullChapterUrl(scripture, lang)}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-600 hover:underline"
-        >
-          {t.scripture.readFull}
-          <ExternalLink size={14} />
-        </a>
+        {lang === "en" ? (
+          <button
+            type="button"
+            onClick={() => setReading(true)}
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-600 hover:underline"
+          >
+            {t.scripture.readFull}
+          </button>
+        ) : (
+          <a
+            href={fullChapterUrl(scripture, lang)}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-gold-600 hover:underline"
+          >
+            {t.scripture.readFull}
+            <ExternalLink size={14} />
+          </a>
+        )}
       </div>
 
       <p className="mt-6 text-[15px] text-ink">{t.scripture.prompt}</p>
@@ -116,12 +132,14 @@ export function ScriptureView(props: StepProps) {
         onChange={(e) => setEntry("scripture", "note", e.target.value)}
       />
     </SectionShell>
+    </>
   );
 }
 
 export function WorshipView(props: StepProps) {
   const { t, effectiveMusicLang, backgroundMusic } = useSettings();
   const { active, setSteps } = useSession();
+  const [source, setSource] = useState<"ambient" | "popular">("ambient");
   const tracks = worshipByLang(effectiveMusicLang);
   // Start playlist on the day's suggested track.
   const suggested = selectWorship(effectiveMusicLang);
@@ -153,10 +171,39 @@ export function WorshipView(props: StepProps) {
     >
       <p className="mb-5 text-[15px] leading-relaxed text-muted">{t.worship.line}</p>
 
-      <p className="mb-2 text-xs font-medium uppercase tracking-wide text-faint">
-        {t.worship.songLabel}
-      </p>
-      <MusicPlayer tracks={ordered} autoPlay={backgroundMusic} />
+      <div className="mb-4 inline-flex rounded-full bg-paper p-1">
+        <button
+          type="button"
+          onClick={() => setSource("ambient")}
+          aria-pressed={source === "ambient"}
+          className={`rounded-full px-3.5 py-1.5 text-sm transition-colors ${
+            source === "ambient" ? "bg-cream text-ink shadow-soft" : "text-muted"
+          }`}
+        >
+          {t.worship.ambient}
+        </button>
+        <button
+          type="button"
+          onClick={() => setSource("popular")}
+          aria-pressed={source === "popular"}
+          className={`rounded-full px-3.5 py-1.5 text-sm transition-colors ${
+            source === "popular" ? "bg-cream text-ink shadow-soft" : "text-muted"
+          }`}
+        >
+          {t.worship.popular}
+        </button>
+      </div>
+
+      {source === "ambient" ? (
+        <>
+          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-faint">
+            {t.worship.songLabel}
+          </p>
+          <MusicPlayer tracks={ordered} autoPlay={backgroundMusic} />
+        </>
+      ) : (
+        <SongPicker initialLang={effectiveMusicLang} />
+      )}
 
       <div className="mt-6 flex items-center justify-between rounded-2xl border border-line/70 bg-cream px-4 py-3">
         <span className="text-sm text-muted">{t.worship.adjustTime}</span>
