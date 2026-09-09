@@ -207,7 +207,7 @@ export function MusicPlayer({
       </div>
 
       {/* Volume */}
-      <div className="mx-auto mt-3 flex max-w-[220px] items-center gap-2">
+      <div className="mx-auto mt-4 flex max-w-[220px] items-center gap-2">
         <input
           type="range"
           min={0}
